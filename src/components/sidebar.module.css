@@ -5,12 +5,12 @@
 }
 
 .avatar {
-  /* margin-bottom: 2rem; */
   width: 3rem;
   height: 3rem;
   outline: 3px solid var(--green-500);
   border-radius: 8px;
   border: 3px solid var(--gray-800);
+  box-sizing: initial;
 }
 
 .cover {
@@ -27,8 +27,10 @@
  margin-top: -2rem;
 }
 
-span {
-  color: var(--gray-400);
+.sidebar span {
+  margin-top: 1rem;
+  color: var(--gray-100);
+  line-height: 1.6;
 }
 
 footer {
@@ -48,7 +50,13 @@ footer {
   align-items: center;
   justify-content: center;
   height: 50px;
-  padding: 0 1.5rem;
   width: 100%;
   background: transparent;
+  gap: 0.5rem;
+  flex-direction: row;
+}
+
+.sidebar footer a:hover {
+  color: var(--white);
+  background: var(--green-500);
 }

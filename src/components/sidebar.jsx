@@ -1,4 +1,5 @@
-import styles from './sidebar.module.css'
+import { PencilLine } from "@phosphor-icons/react";
+import styles from './sidebar.module.css';
 
 export const SideBar = () => {
   return <aside className={styles.sidebar}>
@@ -10,8 +11,9 @@ export const SideBar = () => {
     </div>
 
     <footer>
-        <a href='//' >
-          <img src="" alt="" /> Editar seu perfil</a>
-      </footer>
+      <a href='//' >
+        <PencilLine size={20} />
+        Editar seu perfil</a>
+    </footer>
   </aside>
 }
