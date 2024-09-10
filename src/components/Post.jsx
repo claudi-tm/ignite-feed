@@ -4,11 +4,20 @@ import { Comment } from './Comment';
 
 import { ptBR } from 'date-fns/locale';
 import styles from './Post.module.css';
+import { useState } from 'react';
 
 export function Post({ author, publishedAt, content }) {
 
   const publishedAtFormated = format(publishedAt, "dd 'de' MMMM yyyy", { locale: ptBR })
   const publishedDescription = formatDistanceToNow(publishedAt, { locale: ptBR, addSuffix: true })
+  const [comments, setComments]  = useState(["Muito bom Devon, parabéns!! 👏👏"])
+
+
+  function handleCreateNewComment() {
+    event.preventDefault()
+    let newCommentText = event.target.comment.value // with name
+    setComments([...comments, newCommentText])
+  }
 
   return (
     <article className={styles.post}>
@@ -26,17 +35,19 @@ export function Post({ author, publishedAt, content }) {
 
       <div className={styles.content}>
         {content.map(line => {
-          if (line.type === 'paragraph') {return <p>{line.content}</p>}
-          else if (line.type === 'link') return <p><a href="">{line.content}</a></p>
+          if (line.type === 'paragraph') {return <p key={line}>{line.content}</p>}
+          else if (line.type === 'link') return <p key={line}><a href="//">{line.content}</a></p>
         })}
 
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
 
         <textarea
+          name='comment'
           placeholder="Deixe um comentário"
+          // value={newCommentText}
         />
 
         <footer>
@@ -45,9 +56,9 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments.map((comment) => {
+          return <Comment content={comment}/>
+        })}
       </div>
     </article>
   )
